@@ -29,7 +29,7 @@ int main()
     //Розв'язання рівнянь
     //new_matrix_1.solve();
     //Транспонована матриця
-    new_matrix_1.transpose();
+    new_matrix_1.solve();
 
 
 }

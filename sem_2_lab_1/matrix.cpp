@@ -38,7 +38,7 @@ matrix::matrix()
 
     }
 }
-void matrix::get_matrix() {
+double* matrix::get_matrix() {
 
     cout << "Matrix:" << endl;
 
@@ -50,6 +50,7 @@ void matrix::get_matrix() {
 
         cout << endl;
     }
+    return *matr;
 }
 void matrix::subtraction_matrix(matrix matrix_1, matrix matrix_2) {
 
@@ -71,7 +72,7 @@ void matrix::subtraction_matrix(matrix matrix_1, matrix matrix_2) {
 
         cout << "The dimensions of the matrices must be the same!" << endl;
 }
-void matrix::add_matrix(matrix matrix_1, matrix matrix_2) {
+double* matrix::add_matrix(matrix matrix_1, matrix matrix_2) {
 
     if (matrix_2.row == matrix_1.row && matrix_2.column == matrix_1.column) {
 
@@ -91,8 +92,9 @@ void matrix::add_matrix(matrix matrix_1, matrix matrix_2) {
     else
 
         cout << "The dimensions of the matrices must be the same!";
+    return *matr;
 }
-void matrix::multiplic_number(int num) {
+double* matrix::multiplic_number(int num) {
 
     for (int i = 0; i < row; i++) {
 
@@ -105,8 +107,9 @@ void matrix::multiplic_number(int num) {
     cout << "Multiplication done!" << endl;
 
     get_matrix();
+    return *matr;
 }
-void matrix::mult(matrix matrix_1, matrix matrix_2) {
+double* matrix::mult(matrix matrix_1, matrix matrix_2) {
 
     if (matrix_1.column == matrix_2.row) { //умова, що кількість стовпців першої матриці = кількості рядків другої матриці
 
@@ -148,18 +151,16 @@ void matrix::mult(matrix matrix_1, matrix matrix_2) {
             cout << endl;
 
         }
-
-        for (int i = 0; i < matrix_1.row; i++)
-
-            delete[]mat1[i];
-
-        delete[]mat1;
+        return *mat1;
 
     }
 
-    else
-
+    else {
         cout << "Dimensions error!" << endl;
+        return 0;
+    }
+
+
 
 }
 double matrix::det() {
@@ -304,20 +305,28 @@ void matrix::single_matrix()
         }
     }
 }
-void matrix::transpose()
+double* matrix::transpose()
 {
-    int t;
     get_matrix();
-    for (int i = 0; i < row; ++i)
+
+    double** mat1;
+
+    mat1 = new double* [column];
+
+    for (int i = 0; i < column; i++) {
+
+        mat1[i] = new double[row];
+
+    }
+
+    for (int i = 0; i < column; ++i)
     {
-        for (int j = i; j < column; ++j)
+        for (int j = 0; j < row; ++j)
         {
-            t = matr[i][j];
-            matr[i][j] = matr[j][i];
-            matr[j][i] = t;
+            mat1[i][j] = matr[j][i];
         }
     }
-    get_matrix();
+    return *mat1;
 
 }
 void matrix::solve()
