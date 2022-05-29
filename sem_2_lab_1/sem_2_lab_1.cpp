@@ -27,7 +27,9 @@ int main()
     new_matrix_1.mult(new_matrix_1, new_matrix_2);
     */
     //Розв'язання рівнянь
-    new_matrix_1.solve();
+    //new_matrix_1.solve();
+    //Транспонована матриця
+    new_matrix_1.transpose();
 
 
 }

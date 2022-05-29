@@ -16,7 +16,7 @@ public:
     void memory();
     void  solve();
     void single_matrix();
-
+    void transpose();
 
 protected:
 

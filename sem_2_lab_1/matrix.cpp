@@ -304,6 +304,22 @@ void matrix::single_matrix()
         }
     }
 }
+void matrix::transpose()
+{
+    int t;
+    get_matrix();
+    for (int i = 0; i < row; ++i)
+    {
+        for (int j = i; j < column; ++j)
+        {
+            t = matr[i][j];
+            matr[i][j] = matr[j][i];
+            matr[j][i] = t;
+        }
+    }
+    get_matrix();
+
+}
 void matrix::solve()
 {
     int col;
