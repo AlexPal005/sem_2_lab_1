@@ -455,7 +455,9 @@ void matrix::solve()
         }
     }
 }
-
+int matrix::test() {
+    return 10;
+}
 matrix::~matrix()
 {
 }

@@ -6,6 +6,7 @@ class matrix
 public:
     matrix();
     ~matrix();
+    int test();
     double* get_matrix();
     void subtraction_matrix(matrix matrix_1, matrix matrix_2);
     double* add_matrix(matrix matrix_1, matrix matrix_2);
