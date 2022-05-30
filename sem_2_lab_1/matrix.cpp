@@ -2,9 +2,13 @@
 #include <iostream>
 
 using namespace std;
-matrix::matrix()
+matrix::matrix(double** matrix, int row_in, int column_in)
 {
-    cout << endl << "It is possible to introduce an extended matrix to solve the system!" << endl;
+
+    row = row_in;
+    column = column_in;
+
+    /*cout << endl << "It is possible to introduce an extended matrix to solve the system!" << endl;
 
     cout << "Enter the number of rows of the matrix! " << endl;
 
@@ -15,7 +19,7 @@ matrix::matrix()
     cin >> column;
 
     cout << endl << "Enter the numbers:" << endl;
-
+   */
     matr = new double* [row];
 
     elementary = new double* [row];
@@ -30,15 +34,15 @@ matrix::matrix()
 
     for (int i = 0; i < row; i++) {
 
-        cout << "Enter" << " " << i + 1 << " " << " row" << endl;
-
         for (int j = 0; j < column; j++)
-
-            cin >> matr[i][j];
+          
+            matr[i][j] = matrix[i][j];
 
     }
+    
+    
 }
-double* matrix::get_matrix() {
+void matrix::get_matrix() {
 
     cout << "Matrix:" << endl;
 
@@ -50,9 +54,15 @@ double* matrix::get_matrix() {
 
         cout << endl;
     }
-    return *matr;
+   
 }
-void matrix::subtraction_matrix(matrix matrix_1, matrix matrix_2) {
+double** matrix::subtraction_matrix(matrix matrix_1, matrix matrix_2) {
+
+    double** res = new double* [row];
+    for (int i = 0; i < row; i++) {
+
+        res[i] = new double[column];
+    }
 
     if (matrix_2.row == matrix_1.row && matrix_2.column == matrix_1.column) {
 
@@ -60,7 +70,7 @@ void matrix::subtraction_matrix(matrix matrix_1, matrix matrix_2) {
 
             for (int j = 0; j < column; j++)
 
-                matr[i][j] = matrix_1.matr[i][j] - matrix_2.matr[i][j];
+                res[i][j] = matrix_1.matr[i][j] - matrix_2.matr[i][j];
 
         }
 
@@ -71,8 +81,9 @@ void matrix::subtraction_matrix(matrix matrix_1, matrix matrix_2) {
     else
 
         cout << "The dimensions of the matrices must be the same!" << endl;
+    return res;
 }
-double* matrix::add_matrix(matrix matrix_1, matrix matrix_2) {
+double** matrix::add_matrix(matrix matrix_1, matrix matrix_2) {
 
     if (matrix_2.row == matrix_1.row && matrix_2.column == matrix_1.column) {
 
@@ -92,9 +103,9 @@ double* matrix::add_matrix(matrix matrix_1, matrix matrix_2) {
     else
 
         cout << "The dimensions of the matrices must be the same!";
-    return *matr;
+    return matr;
 }
-double* matrix::multiplic_number(int num) {
+double** matrix::multiplic_number(int num) {
 
     for (int i = 0; i < row; i++) {
 
@@ -107,9 +118,9 @@ double* matrix::multiplic_number(int num) {
     cout << "Multiplication done!" << endl;
 
     get_matrix();
-    return *matr;
+    return matr;
 }
-double* matrix::mult(matrix matrix_1, matrix matrix_2) {
+double** matrix::mult(matrix matrix_1, matrix matrix_2) {
 
     if (matrix_1.column == matrix_2.row) { //умова, що кількість стовпців першої матриці = кількості рядків другої матриці
 
@@ -151,7 +162,7 @@ double* matrix::mult(matrix matrix_1, matrix matrix_2) {
             cout << endl;
 
         }
-        return *mat1;
+        return mat1;
 
     }
 
@@ -455,9 +466,7 @@ void matrix::solve()
         }
     }
 }
-int matrix::test() {
-    return 10;
-}
+
 matrix::~matrix()
 {
 }

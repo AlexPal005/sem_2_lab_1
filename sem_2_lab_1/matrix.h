@@ -4,14 +4,13 @@
 class matrix
 {
 public:
-    matrix();
+    matrix(double** matrix, int row_in, int column_in);
     ~matrix();
-    int test();
-    double* get_matrix();
-    void subtraction_matrix(matrix matrix_1, matrix matrix_2);
-    double* add_matrix(matrix matrix_1, matrix matrix_2);
-    double* multiplic_number(int num);
-    double* mult(matrix matrix_1, matrix matrix_2);
+    void get_matrix();
+    double** subtraction_matrix(matrix matrix_1, matrix matrix_2);
+    double** add_matrix(matrix matrix_1, matrix matrix_2);
+    double** multiplic_number(int num);
+    double** mult(matrix matrix_1, matrix matrix_2);
     double det();
     double det_for(double** z, int p);
     void memory();

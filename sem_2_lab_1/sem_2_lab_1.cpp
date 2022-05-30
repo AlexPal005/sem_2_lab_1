@@ -4,11 +4,30 @@
 using namespace std;
 
 int main()
-{
-    matrix new_matrix_1;
-    //matrix new_matrix_2;
+{  /*
+    const int column = 2;
+    const int row = 3;
+    double arr[row][column] = {
+        {2,3},
+        {4,5},
+        {6,7}
+    };
+    double **m = new double* [row];
+    for (int i = 0; i < row; i++) {
+
+        m[i] = new double[column];
+    }
+    for (int i = 0; i < row; i++) {
 
 
+        for (int j = 0; j < column; j++)
+           m[i][j] = arr[i][j];
+
+    }
+    matrix new_matrix_1(m,row,column);
+    new_matrix_1.get_matrix();
+    */
+    
     /*
     // вивід елементів матриць
     new_matrix_1.get_matrix();
@@ -29,7 +48,6 @@ int main()
     //Розв'язання рівнянь
     //new_matrix_1.solve();
     //Транспонована матриця
-    new_matrix_1.solve();
 
 
 }
