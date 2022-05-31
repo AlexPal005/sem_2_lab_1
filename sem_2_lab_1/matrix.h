@@ -8,7 +8,7 @@ public:
     ~matrix();
     void get_matrix();
     double** subtraction_matrix(matrix matrix_1, matrix matrix_2);
-    double** add_matrix(matrix matrix_1, matrix matrix_2);
+    double** sum_matrix(matrix matrix_1, matrix matrix_2);
     double** multiplic_number(int num);
     double** mult(matrix matrix_1, matrix matrix_2);
     double det();

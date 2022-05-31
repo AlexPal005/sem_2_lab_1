@@ -77,13 +77,23 @@ double** matrix::subtraction_matrix(matrix matrix_1, matrix matrix_2) {
         cout << "Subtraction done!" << endl;
 
         get_matrix();
+        return res;
     }
-    else
-
+    else {
         cout << "The dimensions of the matrices must be the same!" << endl;
-    return res;
+        return 0;
+    }
+
+
+
 }
-double** matrix::add_matrix(matrix matrix_1, matrix matrix_2) {
+double** matrix::sum_matrix(matrix matrix_1, matrix matrix_2) {
+
+    double** res = new double* [row];
+    for (int i = 0; i < row; i++) {
+
+        res[i] = new double[column];
+    }
 
     if (matrix_2.row == matrix_1.row && matrix_2.column == matrix_1.column) {
 
@@ -91,19 +101,23 @@ double** matrix::add_matrix(matrix matrix_1, matrix matrix_2) {
 
             for (int j = 0; j < column; j++)
 
-                matr[i][j] = matrix_1.matr[i][j] + matrix_2.matr[i][j];
+                res[i][j] = matrix_1.matr[i][j] + matrix_2.matr[i][j];
 
         }
 
         cout << "Add complete!" << endl;
 
         get_matrix();
+        return res;
     }
 
-    else
+    else {
 
         cout << "The dimensions of the matrices must be the same!";
-    return matr;
+        return 0;
+    }
+
+
 }
 double** matrix::multiplic_number(int num) {
 
