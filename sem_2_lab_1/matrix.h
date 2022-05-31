@@ -14,9 +14,9 @@ public:
     double det();
     double det_for(double** z, int p);
     void memory();
-    void  solve();
+    double* solve();
     void single_matrix();
-    double* transpose();
+    double** transpose();
 
 private:
     int row, column; // кількість рядків так стовпчиків матриці

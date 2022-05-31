@@ -1,5 +1,6 @@
 #include "matrix.h"
 #include <iostream>
+#include <algorithm>
 
 using namespace std;
 matrix::matrix(double** matrix, int row_in, int column_in)
@@ -120,19 +121,23 @@ double** matrix::sum_matrix(matrix matrix_1, matrix matrix_2) {
 
 }
 double** matrix::multiplic_number(int num) {
+    double** res = new double* [row];
+    for (int i = 0; i < row; i++) {
 
+        res[i] = new double[column];
+    }
     for (int i = 0; i < row; i++) {
 
         for (int j = 0; j < column; j++)
 
-            matr[i][j] = num * matr[i][j];
+            res[i][j] = num * matr[i][j];
 
     }
 
     cout << "Multiplication done!" << endl;
 
     get_matrix();
-    return matr;
+    return res;
 }
 double** matrix::mult(matrix matrix_1, matrix matrix_2) {
 
@@ -234,7 +239,7 @@ double matrix::det() {
                 delete[] z[i];
             }
             delete[] z;
-
+            cout << sum << endl;
             return sum;
         }
     }
@@ -250,54 +255,40 @@ double matrix::det() {
 double matrix::det_for(double** z, int p) {
 
     double sum = 0, product;
-
-    int sign = 1, n, row;
-
-    double** inner, member;
-
-    inner = new double* [p - 1];
-
-    for (int i = 0; i < p - 1; i++) {
-
-        inner[i] = new double[p - 1];
+    if (p == 3) {
+        sum = (z[0][0] * (z[1][1] * z[2][2] - z[2][1] * z[1][2])) - (z[0][1] * (z[1][0] * z[2][2] - z[1][2] * z[2][0])) + (z[0][2] * (z[1][0] * z[2][1] - z[1][1] * z[2][0]));
     }
-    for (int i = 0; i < p; i++) {
-
-        row = 0;
-
-        n = 0;
-        for (int j = 0; j < p; j++) {
-
-            for (int k = 0; k < p; k++) {
-
-                member = z[j][k];
-
-                inner[row][n] = member;
-
-                n++;
-
-                if (n == p - 1) {
-                    n = 0;
-                    row += 1;
-
+    else {
+        int sign = 1, n, row;
+        double** inner, member;
+        inner = new double* [p - 1];
+        for (int i = 0; i < p - 1; i++)
+            inner[i] = new double[p - 1];
+        for (int i = 0; i < p; i++) {
+            row = 0;
+            n = 0;
+            for (int j = 0; j < p; j++) {
+                for (int k = 0; k < p; k++) {
+                    member = z[j][k];
+                    if ((j == 0) || (k == i));
+                    else {
+                        inner[row][n] = member;
+                        n = n + 1;
+                        if (n == p - 1) {
+                            n = 0;
+                            row += 1;
+                        }
+                    }
                 }
             }
+            product = sign * z[0][i] * det_for(inner, p - 1);
+            sum += product;
+            sign = sign * -1;
         }
-
-        product = sign * z[0][i] * det_for(inner, p - 1);
-
-        sum += product;
-
-        sign = sign * -1;
+        for (int i = 0; i < p - 1; i++)
+            delete[] inner[i];
+        delete[] inner;
     }
-
-    for (int i = 0; i < p - 1; i++)
-
-        delete[] inner[i];
-
-    delete[] inner;
-
-
     return sum;
 }
 void matrix::memory() {
@@ -330,10 +321,9 @@ void matrix::single_matrix()
         }
     }
 }
-double* matrix::transpose()
+double** matrix::transpose()
 {
-    get_matrix();
-
+    
     double** mat1;
 
     mat1 = new double* [column];
@@ -351,11 +341,12 @@ double* matrix::transpose()
             mat1[i][j] = matr[j][i];
         }
     }
-    return *mat1;
+    return mat1;
 
 }
-void matrix::solve()
+double* matrix::solve()
 {
+    double* res=new double[row];
     int col;
 
     if (row + 1 < column) {
@@ -460,6 +451,8 @@ void matrix::solve()
 
 
                 cout << "X" << i + 1 << " = " << mat1[i][col - 1] << endl;
+                res[i] = mat1[i][col - 1];
+
             }
             cout << "The inverse matrix is.." << endl;
 
@@ -479,6 +472,18 @@ void matrix::solve()
             delete[]mat1;
         }
     }
+    int temp = 0;     
+    for (int i = 0; i < row - 1; i++) {
+        for (int j = 0; j < row - i - 1; j++) {
+            if (res[j] > res[j + 1]) {
+                
+                temp = res[j];
+                res[j] = res[j + 1];
+                res[j + 1] = temp;
+            }
+        }
+    }
+    return res;
 }
 
 matrix::~matrix()
