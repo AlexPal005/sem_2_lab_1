@@ -59,10 +59,12 @@ void matrix::get_matrix() {
 }
 double** matrix::subtraction_matrix(matrix matrix_1, matrix matrix_2) {
 
-    double** res = new double* [row];
+   double** matr_res = new double* [row];
+
     for (int i = 0; i < row; i++) {
 
-        res[i] = new double[column];
+        matr_res[i] = new double[column];
+
     }
 
     if (matrix_2.row == matrix_1.row && matrix_2.column == matrix_1.column) {
@@ -71,14 +73,22 @@ double** matrix::subtraction_matrix(matrix matrix_1, matrix matrix_2) {
 
             for (int j = 0; j < column; j++)
 
-                res[i][j] = matrix_1.matr[i][j] - matrix_2.matr[i][j];
+                matr_res[i][j] = matrix_1.matr[i][j] - matrix_2.matr[i][j];
 
         }
 
         cout << "Subtraction done!" << endl;
+        for (int i = 0; i < row; i++) {
 
-        get_matrix();
-        return res;
+            for (int j = 0; j < column; j++)
+
+                cout << matr_res[i][j] << " ";
+
+            cout << endl;
+
+        }
+        
+        return matr_res;
     }
     else {
         cout << "The dimensions of the matrices must be the same!" << endl;
@@ -90,26 +100,35 @@ double** matrix::subtraction_matrix(matrix matrix_1, matrix matrix_2) {
 }
 double** matrix::sum_matrix(matrix matrix_1, matrix matrix_2) {
 
-    double** res = new double* [row];
+    double** matr_res = new double* [row];
+
     for (int i = 0; i < row; i++) {
 
-        res[i] = new double[column];
-    }
+        matr_res[i] = new double[column];
 
+    }
     if (matrix_2.row == matrix_1.row && matrix_2.column == matrix_1.column) {
 
         for (int i = 0; i < row; i++) {
 
             for (int j = 0; j < column; j++)
 
-                res[i][j] = matrix_1.matr[i][j] + matrix_2.matr[i][j];
+                matr_res[i][j] = matrix_1.matr[i][j] + matrix_2.matr[i][j];
 
         }
 
         cout << "Add complete!" << endl;
 
-        get_matrix();
-        return res;
+        for (int i = 0; i < row; i++) {
+
+            for (int j = 0; j < column; j++)
+
+                cout << matr_res[i][j] << " ";
+
+            cout << endl;
+
+        }
+        return matr_res;
     }
 
     else {
@@ -121,23 +140,33 @@ double** matrix::sum_matrix(matrix matrix_1, matrix matrix_2) {
 
 }
 double** matrix::multiplic_number(int num) {
-    double** res = new double* [row];
+
+    double** matr_res = new double* [row];
+
     for (int i = 0; i < row; i++) {
 
-        res[i] = new double[column];
+        matr_res[i] = new double[column];
+
     }
     for (int i = 0; i < row; i++) {
 
         for (int j = 0; j < column; j++)
 
-            res[i][j] = num * matr[i][j];
+            matr_res[i][j] = num * matr[i][j];
 
     }
 
-    cout << "Multiplication done!" << endl;
+    for (int i = 0; i < row; i++) {
 
-    get_matrix();
-    return res;
+        for (int j = 0; j < column; j++)
+
+            cout << matr_res[i][j] << " ";
+
+        cout << endl;
+
+    }
+    return matr_res;
+ 
 }
 double** matrix::mult(matrix matrix_1, matrix matrix_2) {
 
@@ -339,7 +368,18 @@ double** matrix::transpose()
         for (int j = 0; j < row; ++j)
         {
             mat1[i][j] = matr[j][i];
+            
         }
+    }
+    cout << "Transposed matrix" << endl;
+    for (int i = 0; i < column; ++i)
+    {
+        for (int j = 0; j < row; ++j)
+        {
+            cout<< mat1[i][j] <<" ";
+
+        }
+        cout << endl;
     }
     return mat1;
 
