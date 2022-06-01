@@ -67,7 +67,7 @@ double** matrix::subtraction_matrix(matrix matrix_1, matrix matrix_2) {
 
     }
 
-    if (matrix_2.row == matrix_1.row && matrix_2.column == matrix_1.column) {
+    if (matrix_2.row == matrix_1.row && matrix_2.column == matrix_1.column) { // перевірка на рівність рядків та стовпчиків
 
         for (int i = 0; i < row; i++) {
 
@@ -78,6 +78,7 @@ double** matrix::subtraction_matrix(matrix matrix_1, matrix matrix_2) {
         }
 
         cout << "Subtraction done!" << endl;
+        /*Друкуємо матрицю*/
         for (int i = 0; i < row; i++) {
 
             for (int j = 0; j < column; j++)
