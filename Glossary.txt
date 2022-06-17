@@ -1,0 +1,17 @@
+matrix (double ** matrix, int row_in, int column_in) - constructor that accepts the matrix, the number of rows and columns.
+~ matrix () - destructor
+get_matrix () - the method prints the matrix matr.
+subtraction_matrix (matrix matrix_1, matrix matrix_2) - a method that calculates the difference of matrices.
+sum_matrix (matrix matrix_1, matrix matrix_2) - the method calculates the sum of matrices.
+multiplic_number (int num) - the method counts the product of the matrix by a number.
+mult (matrix matrix_1, matrix matrix_2) - the method finds the product of matrices.
+det () - the method calculates the determinant of the matrix of size 1, 2, 3.
+det_for (double ** z, int p) - the method calculates the determinant of the matrix more than three.
+memory () - clear memory
+solve () - the method finds the solution of the system of linear equations.
+single_matrix () - the method creates a single matrix.
+transpose () - the method returns the transposed matrix.
+row - the number of rows of the matrix.
+column - the number of columns of the matrix.
+matr - matrix.
+elementary - a single matrix.
